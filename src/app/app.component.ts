@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { StagiaireModel } from './core/models/stagiaire-model';
+import { StagiaireService } from './core/services/stagiaire-service';
 
 @Component({
   selector: 'app-root',
@@ -8,22 +10,15 @@ import { Component } from '@angular/core';
 export class AppComponent {
   public title = 'frontend';
 
-  public stagiaires: any[] = [
-    {
-      firstName: 'Jean-Luc',
-      gender: 'M'
-    },
-    {
-      firstName: 'Oriane',
-      gender: 'F'
-    },
-    {
-      firstName: 'Gabriel',
-      gender: 'M'
-    } // JSON => Java Script Object Notation (Objet JS en plain text)
-  ];
+  public stagiaires: StagiaireModel[] = [];
 
   public showLi: string = 'M';
+
+  public constructor() {
+    const service: StagiaireService  = new StagiaireService();
+    service.deserialize();
+    this.stagiaires = service.getStagiaires();
+  }
 
   public changeGender(): void {
     if (this.showLi === 'M') {

@@ -27,11 +27,11 @@ table {
     margin-right: auto;
     margin-top: 0;
     margin-bottom: 1em;
-    thead {
+    thead { // table thead { ... }
         border-bottom-style: solid;
         border-bottom-color: $button-inactive-color;
         height: 3em;
-        th {
+        th { // table thead th { ... }
             text-align: left;
         }
     }

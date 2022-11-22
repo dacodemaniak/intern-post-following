@@ -9,8 +9,10 @@
 <table>
   <thead>
     <tr>
+      <th>Lastname</th>
       <th>Firstname</th>
       <th>Gender</th>
+      <th>Birthdate</th>
     </tr>
   </thead>
 
@@ -18,10 +20,16 @@
     <ng-container *ngFor="let stagiaire of stagiaires">
       <tr *ngIf="(showLi === 'A') ? true : stagiaire.gender === showLi">
         <td>
+          {{ stagiaire.lastName | uppercase }}
+        </td>
+        <td>
           {{ stagiaire.firstName }}
         </td>
         <td>
           {{ stagiaire.gender }}
+        </td>
+        <td>
+          {{ stagiaire.birthDate | date: 'dd/MM/YYYY'}}
         </td>
       </tr>
     </ng-container>
@@ -29,7 +37,7 @@
 
   <tfoot>
     <tr>
-      <td colspan="2">
+      <td colspan="4">
         {{ getDisplayRowsNumber() }}/{{ stagiaires.length }}
       </td>
     </tr>
