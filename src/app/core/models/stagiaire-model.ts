@@ -4,7 +4,7 @@ export class StagiaireModel {
     private _lastName: string = '';
     private _firstName: string = '';
     private _gender: string = '';
-    private _birthDate?: Date | undefined;
+    private _birthDate?: Date | undefined = undefined;
     private _phoneNumber: string = '';
     private _email: string = ''; 
 
