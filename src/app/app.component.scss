@@ -41,6 +41,29 @@ table {
                 background-color: lighten($button-inactive-color, 30%);
                 color: $button-font-color;
             }
+            td {
+                &:first-child {
+                    span {
+                        display: inline-block;
+                        height: 2em;
+                        width: 2em;
+                        line-height: 2em;
+                        vertical-align: middle;
+                        border-radius: 50%;
+                        text-align: center;
+                        font-weight: 700;
+                        &.male {
+                            background-color: rgb(20, 20, 225);
+                            color: $button-font-color;
+                        }
+
+                        &.female {
+                            background-color: rgb(243, 81, 227);
+                            color: $button-font-color;
+                        }
+                    }
+                }
+            }
         }
     }
     tfoot {
@@ -58,6 +81,7 @@ table {
         }
     }
 }
+
 
 @keyframes coolAppear {
     0% {

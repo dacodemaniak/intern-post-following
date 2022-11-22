@@ -9,6 +9,7 @@
 <table>
   <thead>
     <tr>
+      <th>&nbsp;</th>
       <th>Lastname</th>
       <th>Firstname</th>
       <th>Gender</th>
@@ -19,6 +20,9 @@
   <tbody>
     <ng-container *ngFor="let stagiaire of stagiaires">
       <tr *ngIf="(showLi === 'A') ? true : stagiaire.gender === showLi">
+        <td>
+          <span [ngClass]="{'bubble': true, 'male': stagiaire.gender === 'M', 'female': stagiaire.gender === 'F'}">{{ stagiaire | initials }}</span>
+        </td>
         <td>
           {{ stagiaire.lastName | uppercase }}
         </td>
@@ -37,7 +41,7 @@
 
   <tfoot>
     <tr>
-      <td colspan="4">
+      <td colspan="5">
         {{ getDisplayRowsNumber() }}/{{ stagiaires.length }}
       </td>
     </tr>
