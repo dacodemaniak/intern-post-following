@@ -1,0 +1,75 @@
+$default-color: rgb(23, 23, 22);
+$button-font-color: rgb(255, 255, 255);
+$button-background-color: transparent;
+$button-inactive-color: rgba(20, 20, 200);
+
+/**
+* SCSS Rules
+**/
+button {
+    border: none; // No border
+    background-color: $button-background-color;
+    color: $button-inactive-color;
+    width: 5em;
+    height: 2em;
+
+    &.is-selected {
+        border-radius: .4em;
+        color: $button-font-color;
+        animation: coolAppear 1s ease-in 0s 1 forwards; /** Play animation  with animation property **/
+    }
+}
+
+table {
+    border-collapse: collapse;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0;
+    margin-bottom: 1em;
+    thead {
+        border-bottom-style: solid;
+        border-bottom-color: $button-inactive-color;
+        height: 3em;
+        th {
+            text-align: left;
+        }
+    }
+    tbody {
+        tr {
+            &:nth-child(even) {
+                background-color: lighten($button-inactive-color, 30%);
+                color: $button-font-color;
+            }
+        }
+    }
+    tfoot {
+        border-top-style: solid;
+        border-top-color: $button-inactive-color;
+        border-bottom-style: solid;
+        border-bottom-color: $button-inactive-color;
+        height: 3em;
+        
+        td {
+            &[colspan="2"] {
+                text-align: right;
+                font-weight: 700;
+            }
+        }
+    }
+}
+
+@keyframes coolAppear {
+    0% {
+        background-color: lighten($button-inactive-color, 80%);
+    }
+    50% {
+        background-color: lighten($button-inactive-color, 40%);
+        transform: translateX(25%);
+    }
+    100% {
+        background-color: $button-inactive-color;
+        transform: translateX(0);
+    }
+}
+
