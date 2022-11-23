@@ -53,7 +53,7 @@ export class StagiaireService {
             return stagiaire;
         }
        }
-       throw new Error(`Stagiaire with ${id} was not found`);
+       throw new Error(`Stagiaire with id ${id} was not found`);
 
        // Option 2 :
        const stagaire: StagiaireModel | undefined = this.stagiaires.find(
