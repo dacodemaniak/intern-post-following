@@ -46,6 +46,25 @@ export class StagiaireService {
         return this.stagiaires;
     }
 
+    public findOne(id: number): StagiaireModel {
+       // Option 1 :
+       for (const stagiaire of this.stagiaires) {
+        if (stagiaire.id === id) {
+            return stagiaire;
+        }
+       }
+       throw new Error(`Stagiaire with ${id} was not found`);
+
+       // Option 2 :
+       const stagaire: StagiaireModel | undefined = this.stagiaires.find(
+            (inStagiaire: StagiaireModel) => inStagiaire.id === id
+        );
+        if (stagaire !== undefined) {
+            return stagaire!;
+        }
+        throw new Error(`Stagiaire with ${id} was not found`);
+    }
+
     public deserialize(): void {
         stagiaires.forEach((anyStagiaire: any) => {
             const stagiaire: StagiaireModel = new StagiaireModel();
