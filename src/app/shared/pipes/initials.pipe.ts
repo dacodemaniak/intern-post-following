@@ -1,33 +1,33 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { StagiaireModel } from 'src/app/core/models/stagiaire-model';
+import { StagiaireModel } from './../../core/models/stagiaire-model';
 
 @Pipe({
   name: 'initials'
 })
 export class InitialsPipe implements PipeTransform {
 
-  private _transformParam: any;
-  private _transformMap: Map<string, Function> = new Map<string, Function>();
+  private _transformParam: string = '';
+  private _transformMap: Map<string, Function> = new Map<string, Function>([
+    [
+      '',
+      () => InitialsPipe.simpleInitials()
+    ],
+    [
+      'lastNameFirst',
+      () => InitialsPipe.simpleInitialsInversed()
+    ],
+    [
+      'full',
+      () => InitialsPipe.simpleFullInitials()
+    ],
+    [
+      'lastNameFirstFull',
+      () => InitialsPipe.fullInitialsInversed()
+    ]
+  ]);
   private static stagiaire: StagiaireModel;
 
-  constructor() {
-    
-    this._transformMap.set('', () => {
-      return InitialsPipe.simpleInitials()
-    })
-    .set('lastNameFirst', () => {
-      return InitialsPipe.simpleInitialsInversed()
-    })
-    .set('full', () => {
-      return InitialsPipe.simpleFullInitials()
-    })
-    .set('lastNameFirstFull',         () => {
-      return InitialsPipe.fullInitialsInversed()
-    });
-    console.log('Constructor' + this._transformMap.size);
-  }
-
-  transform(value: unknown, ...args: unknown[]): unknown {
+  transform(value: unknown, ...args: string[]): string {
     if (value instanceof StagiaireModel) {
       let dynamicFunction: Function | undefined;
 
@@ -46,7 +46,7 @@ export class InitialsPipe implements PipeTransform {
         if (dynamicFunction !== undefined)
           return dynamicFunction();
         else
-          throw new Error(`Could not load a Function for undefined key`);
+          throw new Error(`Could not load a Function for '' key`);
       }
     } else {
       throw new Error(`value is not a valid StagiaireModel Object`);
