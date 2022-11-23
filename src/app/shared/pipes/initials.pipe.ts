@@ -6,7 +6,8 @@ import { StagiaireModel } from './../../core/models/stagiaire-model';
 })
 export class InitialsPipe implements PipeTransform {
 
-  private _transformParam: string = '';
+  private static _transformParam: any[] = [];
+
   private _transformMap: Map<string, Function> = new Map<string, Function>([
     [
       '',
@@ -34,8 +35,8 @@ export class InitialsPipe implements PipeTransform {
       InitialsPipe.stagiaire = value;
       
       if (args.length) {
-        this._transformParam = args[0];
-        dynamicFunction = this._transformMap.get(this._transformParam);
+        InitialsPipe._transformParam = args;
+        dynamicFunction = this._transformMap.get(InitialsPipe._transformParam[0]);
         if (dynamicFunction !== undefined) {
           return dynamicFunction();
         } else {
@@ -54,7 +55,11 @@ export class InitialsPipe implements PipeTransform {
   }
 
   private static simpleInitials(): string {
-    return InitialsPipe.stagiaire.firstName.charAt(0) + InitialsPipe.stagiaire.lastName.charAt(0);
+    const initials: string = InitialsPipe.stagiaire.firstName.charAt(0) + InitialsPipe.stagiaire.lastName.charAt(0);
+    if (InitialsPipe._transformParam[1] === 'uppercase') {
+      return initials.toUpperCase();
+    }
+    return initials;
   }
 
   private static simpleInitialsInversed(): string {
@@ -63,11 +68,14 @@ export class InitialsPipe implements PipeTransform {
 
   private static simpleFullInitials(): string {
     let firstNameInitials: string;
+
     if (InitialsPipe.stagiaire.firstName.includes('-')) {
       firstNameInitials = InitialsPipe.stagiaire.firstName
-        .split('-')
-        .map((firstNamePart: string) => firstNamePart.charAt(0))
-        .join('');
+        .split('-') // Transforme une chaîne en un tableau en découpant la chaîne sur le caractère spécifié
+        // Si la chaîne est Jean-Luc => ['Jean', 'Luc']
+        .map((firstNamePart: string) => firstNamePart.charAt(0)) // Transforme un tableau en un autre tableau
+        // ['J', 'L']
+        .join(''); // Génère une chaîne à partir d'un tableau (inverse du split) => JL
     } else {
       firstNameInitials = InitialsPipe.stagiaire.firstName.charAt(0);
     }

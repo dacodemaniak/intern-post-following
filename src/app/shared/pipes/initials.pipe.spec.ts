@@ -25,6 +25,20 @@ describe('InitialsPipe', () => {
     expect(pipe.transform(stagiaire)).toBe('JA');
   });
 
+  it(`Should return JA with second args`, () => {
+    const pipe = new InitialsPipe();
+    
+    const stagiaire: StagiaireModel = new StagiaireModel();
+    stagiaire.id = 6;
+    stagiaire.lastName = 'aubert';
+    stagiaire.firstName = 'jean';
+    stagiaire.email = 'jean-luc.aubert@aelion.fr';
+    stagiaire.phoneNumber = '06';
+    stagiaire.gender = 'M';
+
+    expect(pipe.transform(stagiaire, '', 'uppercase')).toBe('JA');
+  });
+
   it(`Should return JLA if param contains full with a true value`, () => {
     const pipe = new InitialsPipe();
     expect(pipe.transform(stagiaire, 'full')).toBe('JLA');
@@ -37,6 +51,11 @@ describe('InitialsPipe', () => {
 
   it(`Should return AJL if param contains full and lastNameFirst with a true value`, () => {
     const pipe = new InitialsPipe();
-    expect(pipe.transform(stagiaire, 'lastNameFirstFull')).toBeTruthy();
+    expect(pipe.transform(stagiaire, 'lastNameFirstFull')).toBe('AJL');
+  });
+
+  it(`Should throw an error if second param is dummy`, () => {
+    const pipe = new InitialsPipe();
+    expect(() => pipe.transform(stagiaire, 'truc')).toThrowError();
   });
 });
