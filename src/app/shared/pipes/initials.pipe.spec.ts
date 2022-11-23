@@ -27,26 +27,16 @@ describe('InitialsPipe', () => {
 
   it(`Should return JLA if param contains full with a true value`, () => {
     const pipe = new InitialsPipe();
-    expect(pipe.transform(stagiaire, {full: true})).toBe('JLA');
-  });
-
-  it(`Should return JA if param contains full with a false value`, () => {
-    const pipe = new InitialsPipe();
-    expect(pipe.transform(stagiaire, {full: false})).toBe('JA');
+    expect(pipe.transform(stagiaire, 'full')).toBe('JLA');
   });
 
   it(`Should return AJ if param contains lastNameFirst with a true value`, () => {
     const pipe = new InitialsPipe();
-    expect(pipe.transform(stagiaire, {lastNameFirst: true})).toBe('AJ');
-  });
-
-  it(`Should return JA if param contains lastNameFirst with a false value`, () => {
-    const pipe = new InitialsPipe();
-    expect(pipe.transform(stagiaire, {lastNameFirst: false})).toBe('JA');
+    expect(pipe.transform(stagiaire, 'lastNameFirst')).toBe('AJ');
   });
 
   it(`Should return AJL if param contains full and lastNameFirst with a true value`, () => {
     const pipe = new InitialsPipe();
-    expect(pipe.transform(stagiaire, {lastNameFirst: true, full: true})).toBeTruthy();
+    expect(pipe.transform(stagiaire, 'lastNameFirstFull')).toBeTruthy();
   });
 });

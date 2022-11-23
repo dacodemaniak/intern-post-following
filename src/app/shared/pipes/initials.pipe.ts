@@ -7,45 +7,83 @@ import { StagiaireModel } from 'src/app/core/models/stagiaire-model';
 export class InitialsPipe implements PipeTransform {
 
   private _transformParam: any;
+  private _transformMap: Map<string, Function> = new Map<string, Function>();
+  private static stagiaire: StagiaireModel;
+
+  constructor() {
+    
+    this._transformMap.set('', () => {
+      return InitialsPipe.simpleInitials()
+    })
+    .set('lastNameFirst', () => {
+      return InitialsPipe.simpleInitialsInversed()
+    })
+    .set('full', () => {
+      return InitialsPipe.simpleFullInitials()
+    })
+    .set('lastNameFirstFull',         () => {
+      return InitialsPipe.fullInitialsInversed()
+    });
+    console.log('Constructor' + this._transformMap.size);
+  }
 
   transform(value: unknown, ...args: unknown[]): unknown {
     if (value instanceof StagiaireModel) {
+      let dynamicFunction: Function | undefined;
+
+      InitialsPipe.stagiaire = value;
+      
       if (args.length) {
         this._transformParam = args[0];
+        dynamicFunction = this._transformMap.get(this._transformParam);
+        if (dynamicFunction !== undefined) {
+          return dynamicFunction();
+        } else {
+          throw new Error(`Unable to find a resolver Function`);
+        }
+      } else {
+        dynamicFunction = this._transformMap.get('');
+        if (dynamicFunction !== undefined)
+          return dynamicFunction();
+        else
+          throw new Error(`Could not load a Function for undefined key`);
       }
-      return this.getInitials(value).toUpperCase();
     } else {
       throw new Error(`value is not a valid StagiaireModel Object`);
     }
   }
 
-
-  private getInitials(stagiaire: StagiaireModel): string {
-    if (this._transformParam === undefined) {
-      return this._firstNameHandling(stagiaire.firstName) + this._getInitial(stagiaire.lastName);
-    }
-
-    if (this._transformParam.hasOwnProperty('lastNameFirst') && this._transformParam.lastNameFirst) {
-      return this._getInitial(stagiaire.lastName) + this._firstNameHandling(stagiaire.firstName);
-    }
-
-    return this._firstNameHandling(stagiaire.firstName) + this._getInitial(stagiaire.lastName);
+  private static simpleInitials(): string {
+    return InitialsPipe.stagiaire.firstName.charAt(0) + InitialsPipe.stagiaire.lastName.charAt(0);
   }
 
-  private _firstNameHandling(firstName: string): string {
-    if (this._transformParam === undefined) {
-      return this._getInitial(firstName);
-    }
-
-    if (firstName.includes('-') && this._transformParam.hasOwnProperty('full') && this._transformParam.full) {
-      const firstNameParts: string[] = firstName.split('-');
-      return this._getInitial(firstNameParts[0]) + this._getInitial(firstNameParts[1]);
-    }
-
-    return this._getInitial(firstName);
+  private static simpleInitialsInversed(): string {
+    return InitialsPipe.stagiaire.lastName.charAt(0) + InitialsPipe.stagiaire.firstName.charAt(0);
   }
 
-  private _getInitial(value: string): string {
-    return value.charAt(0);
+  private static simpleFullInitials(): string {
+    let firstNameInitials: string;
+    if (InitialsPipe.stagiaire.firstName.includes('-')) {
+      firstNameInitials = InitialsPipe.stagiaire.firstName
+        .split('-')
+        .map((firstNamePart: string) => firstNamePart.charAt(0))
+        .join('');
+    } else {
+      firstNameInitials = InitialsPipe.stagiaire.firstName.charAt(0);
+    }
+    return firstNameInitials + InitialsPipe.stagiaire.lastName.charAt(0);
+  }
+
+  private static fullInitialsInversed(): string {
+    let firstNameInitials: string;
+    if (InitialsPipe.stagiaire.firstName.includes('-')) {
+      firstNameInitials = InitialsPipe.stagiaire.firstName
+        .split('-')
+        .map((firstNamePart: string) => firstNamePart.charAt(0))
+        .join('');
+    } else {
+      firstNameInitials = InitialsPipe.stagiaire.firstName.charAt(0);
+    }
+    return InitialsPipe.stagiaire.lastName.charAt(0) + firstNameInitials;
   }
 }
