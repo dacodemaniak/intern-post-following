@@ -57,4 +57,8 @@ export class ListComponent implements OnInit {
     }
     return displayedItem;
   }
+
+  public goToDetail(): void {
+    console.log('Go to detail works');
+  }
 }
