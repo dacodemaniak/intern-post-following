@@ -1,1 +1,28 @@
-<p>detail works!</p>
+<ng-container *ngIf="stagiaire">
+    <div class="card">
+        <div class="card-header">
+            <span 
+            [ngClass]="{'bubble': true, 'male': stagiaire.gender === 'M', 'female': stagiaire.gender === 'F'}"
+            >
+                {{ stagiaire | initials: 'full' }}
+            </span>
+            <span>{{ stagiaire.firstName }} {{ stagiaire.lastName }}</span>
+        </div>
+
+        <div class="card-content">
+            <ul>
+                <li>Né-e le : {{ stagiaire.birthDate | date: 'dd-MM-YYYY'}}</li>
+                <li>email : {{ stagiaire.email }}</li>
+                <li>Téléphone : {{ stagiaire.phoneNumber }}</li>
+            </ul>
+        </div>
+
+        <div class="card-footer">
+            <a class="btn btn-primary" [routerLink]="['/', 'stagiaires']">Liste</a>
+            <div class="progress">
+                <div class="inner-progress"></div>
+            </div>
+        </div>
+    </div>
+
+</ng-container>

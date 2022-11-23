@@ -10,7 +10,7 @@ import { StagiaireService } from 'src/app/core/services/stagiaire-service';
 })
 export class DetailComponent implements OnInit {
 
-  public stagiaire!: StagiaireModel;
+  public stagiaire: StagiaireModel | null = null;
 
   constructor(
     private route: ActivatedRoute,
