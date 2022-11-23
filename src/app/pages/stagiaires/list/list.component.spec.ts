@@ -1,4 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Router, RouterModule } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
+import { AppModule } from 'src/app/app.module';
 import { InitialsPipe } from 'src/app/shared/pipes/initials.pipe';
 
 import { ListComponent } from './list.component';
@@ -9,7 +12,8 @@ describe('ListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ListComponent, InitialsPipe ]
+      declarations: [ ListComponent, InitialsPipe ],
+      imports: [ AppModule, RouterTestingModule ],
     })
     .compileComponents();
   });
