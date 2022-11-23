@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { StagiaireModel } from 'src/app/core/models/stagiaire-model';
 import { StagiaireService } from 'src/app/core/services/stagiaire-service';
 
@@ -12,7 +13,9 @@ export class ListComponent implements OnInit {
 
   public showLi: string = 'M';
   
-  constructor() {
+  constructor(
+    private router: Router // DI => Dependency Injection
+  ) {
     const service: StagiaireService  = new StagiaireService();
     service.deserialize();
     this.stagiaires = service.getStagiaires();
@@ -58,7 +61,8 @@ export class ListComponent implements OnInit {
     return displayedItem;
   }
 
-  public goToDetail(): void {
-    console.log('Go to detail works');
+  public goToDetail(id: number): void {
+    console.log(`Got ${id} from list`);
+    this.router.navigate(['/detail']);
   }
 }

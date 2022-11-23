@@ -21,7 +21,7 @@
           <td>
             <span 
                 [ngClass]="{'bubble': true, 'male': stagiaire.gender === 'M', 'female': stagiaire.gender === 'F'}"
-                (click)="goToDetail()"
+                (click)="goToDetail(stagiaire.id)"
             >
                 {{ stagiaire | initials }}
             </span>

@@ -44,6 +44,7 @@ table {
             td {
                 &:first-child {
                     span {
+                        cursor: pointer;
                         display: inline-block;
                         height: 2em;
                         width: 2em;
