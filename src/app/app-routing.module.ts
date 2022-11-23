@@ -19,7 +19,7 @@ export class AppRoutingModule {
       component: ListComponent
     },
     {
-      path: 'detail',
+      path: 'detail/:id',
       component: DetailComponent
     },
     {

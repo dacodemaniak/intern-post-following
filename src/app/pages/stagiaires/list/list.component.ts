@@ -63,6 +63,6 @@ export class ListComponent implements OnInit {
 
   public goToDetail(id: number): void {
     console.log(`Got ${id} from list`);
-    this.router.navigate(['/detail']);
+    this.router.navigate(['/detail', id]);
   }
 }
