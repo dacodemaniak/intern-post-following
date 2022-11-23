@@ -1,0 +1,61 @@
+<div [ngSwitch]="showLi">
+    <div *ngSwitchCase="'A'">Tous les stagiaires</div>
+    <div *ngSwitchCase="'F'">Féminin</div>
+    <div *ngSwitchCase="'M'">Masculin</div>
+  </div>
+  
+  <table>
+    <thead>
+      <tr>
+        <th>&nbsp;</th>
+        <th>Lastname</th>
+        <th>Firstname</th>
+        <th>Gender</th>
+        <th>Birthdate</th>
+      </tr>
+    </thead>
+  
+    <tbody>
+      <ng-container *ngFor="let stagiaire of stagiaires">
+        <tr *ngIf="(showLi === 'A') ? true : stagiaire.gender === showLi">
+          <td>
+            <span [ngClass]="{'bubble': true, 'male': stagiaire.gender === 'M', 'female': stagiaire.gender === 'F'}">{{ stagiaire | initials }}</span>
+          </td>
+          <td>
+            {{ stagiaire.lastName | uppercase }}
+          </td>
+          <td>
+            {{ stagiaire.firstName }}
+          </td>
+          <td>
+            {{ stagiaire.gender }}
+          </td>
+          <td>
+            {{ stagiaire.birthDate | date: 'dd/MM/YYYY'}}
+          </td>
+        </tr>
+      </ng-container>
+    </tbody>
+  
+    <tfoot>
+      <tr>
+        <td colspan="5">
+          {{ getDisplayRowsNumber() }}/{{ stagiaires.length }}
+        </td>
+      </tr>
+    </tfoot>
+  </table>
+  
+  <button type="button" (click)="showLi = 'A'" [ngClass]="{'is-selected': showLi === 'A'}">
+    Tous
+  </button>
+  
+  <button type="button" (click)="showLi='F'" [ngClass]="{'is-selected': showLi === 'F'}">
+    F
+  </button>
+  
+  <button type="button" (click)="showLi='M'" [ngClass]="{'is-selected': showLi === 'M'}">
+    M
+  </button>
+  
+  <p>showLi vaut : {{ showLi }}</p>
