@@ -28,7 +28,14 @@ export class StagiaireService {
     }
 
     public findOne(id: number): Observable<StagiaireModel> {
-        throw new Error('Method not implemented yet');
+       return this.httpClient.get<any>(
+        `${environment.fakeApi}stagiaires/${id}`
+       ).pipe(
+        take(1),
+        map((anyStagiaire: any) => {
+            return this.deserialize(anyStagiaire);
+        })
+       )
     }
 
     public create(datas: any): void {}
