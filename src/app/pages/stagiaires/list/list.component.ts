@@ -11,7 +11,7 @@ import { StagiaireService } from 'src/app/core/services/stagiaire-service';
 export class ListComponent implements OnInit {
   public stagiaires: StagiaireModel[] = [];
 
-  public showLi: string = 'M';
+  public showLi: string = 'A';
   
   constructor(
     private router: Router // DI => Dependency Injection
