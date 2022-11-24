@@ -29,10 +29,10 @@ export class StagiaireService {
 
     public findOne(id: number): Observable<StagiaireModel> {
        return this.httpClient.get<any>(
-        `${environment.fakeApi}stagiaires/${id}`
+        `${environment.fakeApi}stagiaires/${id}` // http://localhost:3000/stagiaires/2
        ).pipe(
-        take(1),
-        map((anyStagiaire: any) => {
+        take(1), // Récupère l'objet qui vient de l'API
+        map((anyStagiaire: any) => { // Transforme le any en StagiaireModel
             return this.deserialize(anyStagiaire);
         })
        )
