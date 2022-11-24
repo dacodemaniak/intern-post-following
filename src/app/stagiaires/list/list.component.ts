@@ -14,14 +14,15 @@ export class ListComponent implements OnInit {
   public showLi: string = 'A';
   
   constructor(
-    private router: Router // DI => Dependency Injection
-  ) {
-    const service: StagiaireService  = new StagiaireService();
-    service.deserialize();
-    this.stagiaires = service.getStagiaires();
-  }
+    private router: Router, // DI => Dependency Injection
+    private stagiaireService: StagiaireService
+  ) {}
 
   ngOnInit(): void {
+    this.stagiaireService.findAll()
+      .subscribe((stagiaires: StagiaireModel[]) => {
+        this.stagiaires = stagiaires;
+      });
   }
 
   public changeGender(): void {
