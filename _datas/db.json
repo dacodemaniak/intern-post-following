@@ -1,0 +1,31 @@
+{
+    "stagiaires": [
+      {
+        "id": 1,
+        "lastName": "Aubert",
+        "firstName": "Jean-Luc",
+        "gender": "M",
+        "email": "jean-luc.aubert@aelion.fr",
+        "phoneNumber": "06 11 11 11 11",
+        "birthDate": "1968-04-30T00:00:00.000Z"
+      },
+      {
+        "id": 2,
+        "lastName": "Bond",
+        "firstName": "James",
+        "gender": "M",
+        "email": "james.bond@mi6.co.uk",
+        "phoneNumber": "00 70 07 00 70",
+        "birthDate": "1945-06-16T00:00:00.000Z"
+      },
+      {
+        "id": 3,
+        "lastName": "Connor",
+        "firstName": "Sarah",
+        "gender": "F",
+        "email": "sarah.connor@illbeback.com",
+        "phoneNumber": "05 555 555 555",
+        "birthDate": "1982-11-24T00:00:00.000Z"
+      }
+    ]
+  }
