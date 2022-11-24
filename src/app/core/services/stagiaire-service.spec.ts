@@ -36,7 +36,7 @@ describe('StagiaireService', () => {
     const httpTestingController = TestBed.inject(HttpTestingController)
     service.findAll()
       .subscribe((stagiaires: StagiaireModel[]) => {
-        expect(stagiaires).toBeInstanceOf(Observable);
+        expect(stagiaires).toBeInstanceOf(Array);
       });
     
     const request = httpTestingController.expectOne(
@@ -45,5 +45,20 @@ describe('StagiaireService', () => {
 
     expect(request.request.method).toBe('GET');
     httpTestingController.verify();
-  })
+  });
+
+  it(`Should return 'Aubert' as id passed is 1`, () => {
+    const httpTestingController = TestBed.inject(HttpTestingController)
+    service.findOne(1)
+      .subscribe((stagiaire: StagiaireModel) => {
+        expect(stagiaire.lastName).toBe('Aubert');
+      });
+    
+    const request = httpTestingController.expectOne(
+      `${environment.fakeApi}stagiaires/1`
+    );
+
+    expect(request.request.method).toBe('GET');
+    httpTestingController.verify();
+  });
 });
