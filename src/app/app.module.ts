@@ -3,20 +3,16 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { InitialsPipe } from './shared/pipes/initials.pipe';
-import { ListComponent } from './pages/stagiaires/list/list.component';
-import { DetailComponent } from './pages/stagiaires/detail/detail.component';
+import { StagiairesModule } from './stagiaires/stagiaires.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    InitialsPipe,
-    ListComponent,
-    DetailComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    StagiairesModule
   ],
   providers: [],
   bootstrap: [AppComponent]
