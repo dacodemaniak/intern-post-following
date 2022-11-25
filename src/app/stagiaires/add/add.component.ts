@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { StagiaireService } from 'src/app/core/services/stagiaire-service';
+import { DateLessThan } from 'src/app/core/validators/date-less-than';
 
 @Component({
   selector: 'app-add',
@@ -37,8 +38,8 @@ export class AddComponent implements OnInit {
       birthDate: [
         '',
         [
-          Validators.required
-          // Date must be lower to...
+          Validators.required,
+          DateLessThan.dateLessThan()
         ]
       ],
       phoneNumber: [

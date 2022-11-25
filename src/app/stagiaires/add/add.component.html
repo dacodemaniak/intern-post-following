@@ -20,6 +20,15 @@
         <mat-hint>DD/MM/YYYY</mat-hint>
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
+
+        <mat-error *ngIf="addStagiaireForm.controls['birthDate'].errors && addStagiaireForm.controls['birthDate'].touched">
+            <span *ngIf="addStagiaireForm.controls['birthDate'].hasError('required')">
+                La date de naissance est obligatoire.
+            </span> 
+            <span *ngIf="addStagiaireForm.controls['birthDate'].hasError('dateLessThan')">
+                Le stagiaire n'a pas 18 ans...
+            </span>         
+        </mat-error>
     </mat-form-field>
 
     <mat-form-field>
@@ -41,4 +50,6 @@
     <button mat-raised-button color="primary" type="submit" [disabled]="addStagiaireForm.invalid">
         Add
     </button>
+
+    {{ addStagiaireForm.controls['birthDate'].errors | json }}
 </form>
