@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AddComponent } from './stagiaires/add/add.component';
 import { DetailComponent } from './stagiaires/detail/detail.component';
 import { ListComponent } from './stagiaires/list/list.component';
 
@@ -12,7 +13,7 @@ export class AppRoutingModule {
     {
       path: '', // Chemin vide, doit toujours être la première route
       redirectTo: 'stagiaires',
-      pathMatch: 'full' // Angular va analyser l'intégralité de la route
+      pathMatch: 'full' // Angular va analyser l'intégralité de la route stagiaires/1/detail
     },
     {
       path: 'stagiaires',
@@ -21,6 +22,10 @@ export class AppRoutingModule {
     {
       path: 'detail/:id',
       component: DetailComponent
+    },
+    {
+      path: 'stagiaire/add',
+      component: AddComponent
     },
     {
       path: '**', // Route fallback
