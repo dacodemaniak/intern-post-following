@@ -1,9 +1,9 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { StagiaireModel } from "../models/stagiaire-model";
 import { environment } from "./../../../environments/environment";
-import { map, take } from 'rxjs/operators';
+import { map, switchMap, take } from 'rxjs/operators';
 @Injectable({
     providedIn: 'root'
 })
@@ -38,11 +38,50 @@ export class StagiaireService {
        )
     }
 
-    public create(datas: any): void {}
+    public create(datas: any): Observable<StagiaireModel> {
+        console.log(`Values received by service : ${JSON.stringify(datas)}`);
+        /**
+         * {
+         *  lastName: "...",
+         *  firstName: "...",
+         *  gender: "...",
+         *  birthDate: "...",
+         *  phoneNumber: "...",
+         *  email: "..."
+         * }
+         */
+        // Get the next id before to send to backend
+        return this.findAll()
+        .pipe(
+            take(1),
+            map((stagiaires: StagiaireModel[]) => {
+                // Compute nextId
+                let nextId = 1;
+                if (stagiaires.length) {
+                    nextId = stagiaires.sort((s1: StagiaireModel, s2: StagiaireModel) => s2.id - s1.id)[0].id + 1
+                }
+                datas.id = nextId;
+                const stagiaire: StagiaireModel = this.deserialize(datas);
+                // POST the stagiaire completed
+                this.httpClient.post<StagiaireModel>(
+                    `${environment.fakeApi}stagiaires`,
+                    datas
+                ).subscribe();
+                return stagiaire;
+            })
+        )
+    }
 
     public update(datas: any): void {}
 
-    public delete(datas: any): void {}
+    public delete(datas: StagiaireModel): Observable<HttpResponse<any>> {
+        return this.httpClient.delete<any>(
+            `${environment.fakeApi}stagiaires/${datas.id}`,
+            {
+                observe: 'response' // HttpResponse {status: 200 [40x, 50x], body: any}
+            }
+        );
+    }
 
     public deserialize(anyStagiaire: any): StagiaireModel {
         const stagiaire: StagiaireModel = new StagiaireModel();
