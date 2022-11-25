@@ -57,6 +57,10 @@
     </tfoot>
   </table>
   
+  <a [routerLink]="['/', 'stagiaire', 'add']" class="btn btn-primary">
+    Ajouter
+  </a>
+  
   <button type="button" (click)="showLi = 'A'" [ngClass]="{'is-selected': showLi === 'A'}">
     Tous
   </button>

@@ -84,6 +84,23 @@ table {
 }
 
 
+a {
+    &.btn {
+        display: block;
+        text-decoration: none;
+        padding: .5em;
+        border-radius: .25em;
+        width: 5em;
+        margin: 0 auto;
+        text-align: center;
+        text-transform: uppercase;
+        &.btn-primary {
+            background-color: $button-inactive-color;
+            color: $button-font-color;
+        }
+    }
+}
+
 @keyframes coolAppear {
     0% {
         background-color: lighten($button-inactive-color, 80%);
