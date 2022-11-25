@@ -12,6 +12,7 @@
         <th>Firstname</th>
         <th>Gender</th>
         <th>Birthdate</th>
+        <th>&nbsp;</th>
       </tr>
     </thead>
   
@@ -37,6 +38,11 @@
           </td>
           <td>
             {{ stagiaire.birthDate | date: 'dd/MM/YYYY'}}
+          </td>
+          <td>
+            <button mat-mini-fab color="primary" (click)="onDelete(stagiaire)">
+              <mat-icon>delete</mat-icon>
+            </button>
           </td>
         </tr>
       </ng-container>
