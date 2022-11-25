@@ -6,13 +6,15 @@ import { ListComponent } from './list/list.component';
 import { DetailComponent } from './detail/detail.component';
 import { InitialsPipe } from './pipes/initials.pipe';
 import { SharedModule } from '../shared/shared.module';
+import { AddComponent } from './add/add.component';
 
 
 @NgModule({
   declarations: [
     ListComponent,
     DetailComponent,
-    InitialsPipe
+    InitialsPipe,
+    AddComponent
   ],
   imports: [
     CommonModule,
