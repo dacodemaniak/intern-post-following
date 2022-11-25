@@ -1,31 +1,58 @@
 {
-    "stagiaires": [
-      {
-        "id": 1,
-        "lastName": "Aubert",
-        "firstName": "Jean-Luc",
-        "gender": "M",
-        "email": "jean-luc.aubert@aelion.fr",
-        "phoneNumber": "06 11 11 11 11",
-        "birthDate": "1968-04-30T00:00:00.000Z"
-      },
-      {
-        "id": 2,
-        "lastName": "Bond",
-        "firstName": "James",
-        "gender": "M",
-        "email": "james.bond@mi6.co.uk",
-        "phoneNumber": "00 70 07 00 70",
-        "birthDate": "1945-06-16T00:00:00.000Z"
-      },
-      {
-        "id": 3,
-        "lastName": "Connor",
-        "firstName": "Sarah",
-        "gender": "F",
-        "email": "sarah.connor@illbeback.com",
-        "phoneNumber": "05 555 555 555",
-        "birthDate": "1982-11-24T00:00:00.000Z"
-      }
-    ]
-  }
+  "stagiaires": [
+    {
+      "id": 1,
+      "lastName": "Aubert",
+      "firstName": "Jean-Luc",
+      "gender": "M",
+      "email": "jean-luc.aubert@aelion.fr",
+      "phoneNumber": "06 11 11 11 11",
+      "birthDate": "1968-04-30T00:00:00.000Z"
+    },
+    {
+      "id": 2,
+      "lastName": "Bond",
+      "firstName": "James",
+      "gender": "M",
+      "email": "james.bond@mi6.co.uk",
+      "phoneNumber": "00 70 07 00 70",
+      "birthDate": "1945-06-16T00:00:00.000Z"
+    },
+    {
+      "id": 3,
+      "lastName": "Connor",
+      "firstName": "Sarah",
+      "gender": "F",
+      "email": "sarah.connor@illbeback.com",
+      "phoneNumber": "05 555 555 555",
+      "birthDate": "1982-11-24T00:00:00.000Z"
+    },
+    {
+      "lastName": "Dupont",
+      "firstName": "Antoine",
+      "gender": "M",
+      "birthDate": "2004-11-19T23:00:00.000Z",
+      "phoneNumber": "",
+      "email": "antoine.dupont@st.fr",
+      "id": 4
+    },
+    {
+      "lastName": "Zidane",
+      "firstName": "Zinedine",
+      "gender": "M",
+      "birthDate": "1975-06-14T23:00:00.000Z",
+      "phoneNumber": "",
+      "email": "zz@zz.com",
+      "id": 5
+    },
+    {
+      "lastName": "Neymar",
+      "firstName": "Jean",
+      "gender": "M",
+      "birthDate": "1999-01-14T23:00:00.000Z",
+      "phoneNumber": "",
+      "email": "jean.neymar@brasil.fr",
+      "id": 6
+    }
+  ]
+}
