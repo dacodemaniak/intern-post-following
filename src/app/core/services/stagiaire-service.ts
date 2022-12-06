@@ -59,10 +59,6 @@ export class StagiaireService {
                 return this.deserialize(anyStagiaire);
             })
         )
-        //.subscribe();
-        //         return stagiaire;
-        //     })
-        // )
     }
 
     public update(datas: any): void {}
