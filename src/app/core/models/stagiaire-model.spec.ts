@@ -3,10 +3,10 @@ import { StagiaireModel } from './stagiaire-model';
 describe('StagiaireModel', () => {
   const properties: string[] = [
     '_id',
-    '_lastName',
-    '_firstName',
+    '_lastname',
+    '_firstname',
     '_gender',
-    '_birthDate',
+    '_birthdate',
     '_phoneNumber',
     '_email',
   ];
@@ -45,11 +45,11 @@ describe('StagiaireModel', () => {
     expect(stagaire.id).toEqual(0);
   });
 
-  it(`Should have 'Aubert' as lastName`, () => {
+  it(`Should have 'Aubert' as lastname`, () => {
     const stagaire: StagiaireModel = new StagiaireModel();
-    stagaire.lastName = 'Aubert';
+    stagaire.lastname = 'Aubert';
 
-    expect(stagaire.lastName).toBe('Aubert');
+    expect(stagaire.lastname).toBe('Aubert');
   });
 
 });

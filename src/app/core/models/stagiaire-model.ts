@@ -1,10 +1,10 @@
 export class StagiaireModel {
 
     private _id: number = 0;
-    private _lastName: string = '';
-    private _firstName: string = '';
+    private _lastname: string = '';
+    private _firstname: string = '';
     private _gender: string = '';
-    private _birthDate?: Date | undefined = undefined;
+    private _birthdate?: Date | undefined = undefined;
     private _phoneNumber: string = '';
     private _email: string = ''; 
 
@@ -16,20 +16,20 @@ export class StagiaireModel {
       this._id = val
     }
     
-    get lastName() {
-      return this._lastName
+    get lastname() {
+      return this._lastname
     }
     
-    set lastName(val: string) {
-      this._lastName = val
+    set lastname(val: string) {
+      this._lastname = val
     }
     
-    get firstName() {
-      return this._firstName
+    get firstname() {
+      return this._firstname
     }
     
-    set firstName(val: string) {
-      this._firstName = val
+    set firstname(val: string) {
+      this._firstname = val
     }
     
     get gender() {
@@ -40,12 +40,12 @@ export class StagiaireModel {
       this._gender = val
     }
     
-    get birthDate(): Date | undefined {
-      return this._birthDate
+    get birthdate(): Date | undefined {
+      return this._birthdate
     }
     
-    set birthDate(val: Date | undefined) {
-      this._birthDate = val
+    set birthdate(val: Date | undefined) {
+      this._birthdate = val
     }
     
     get phoneNumber() {

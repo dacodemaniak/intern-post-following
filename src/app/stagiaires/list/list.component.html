@@ -2,6 +2,7 @@
     <div *ngSwitchCase="'A'">Tous les stagiaires</div>
     <div *ngSwitchCase="'F'">Féminin</div>
     <div *ngSwitchCase="'M'">Masculin</div>
+    <div *ngSwitchCase="'X'">X</div>
   </div>
   
   <table>
@@ -21,23 +22,25 @@
         <tr *ngIf="(showLi === 'A') ? true : stagiaire.gender === showLi">
           <td>
             <span 
-                [ngClass]="{'bubble': true, 'male': stagiaire.gender === 'M', 'female': stagiaire.gender === 'F'}"
+                [ngClass]="{'bubble': true, 
+                    'male': stagiaire.gender === 'MALE', 
+                    'female': stagiaire.gender === 'FEMALE'}"
                 (click)="goToDetail(stagiaire.id)"
             >
                 {{ stagiaire | initials }}
             </span>
           </td>
           <td>
-            {{ stagiaire.lastName | uppercase }}
+            {{ stagiaire.lastname | uppercase }}
           </td>
           <td>
-            {{ stagiaire.firstName }}
+            {{ stagiaire.firstname }}
           </td>
           <td>
             {{ stagiaire.gender }}
           </td>
           <td>
-            {{ stagiaire.birthDate | date: 'dd/MM/YYYY'}}
+            {{ stagiaire.birthdate | date: 'dd/MM/YYYY'}}
           </td>
           <td>
             <button mat-mini-fab color="primary" (click)="onDelete(stagiaire)">

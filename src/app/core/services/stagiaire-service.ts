@@ -4,10 +4,15 @@ import { Observable } from "rxjs";
 import { StagiaireModel } from "../models/stagiaire-model";
 import { environment } from "./../../../environments/environment";
 import { map, switchMap, take } from 'rxjs/operators';
+
 @Injectable({
     providedIn: 'root'
 })
 export class StagiaireService {
+
+    private static readonly CONTROLLER_PATH: string = `${environment.api}trainees`;    
+    // private static readonly CONTROLLER_PATH: string = `${environment.fakeApi}stagiaires`;    
+
     public constructor(
         private httpClient: HttpClient
     ) {}
@@ -15,7 +20,7 @@ export class StagiaireService {
     // CRUD methods : Create Read Update Delete
     public findAll(): Observable<StagiaireModel[]> {
         return this.httpClient.get<any[]>(
-            `${environment.fakeApi}stagiaires`
+            StagiaireService.CONTROLLER_PATH
         )
         .pipe(
             take(1), // Prends le premier résultat et arrête d'observer
@@ -29,7 +34,7 @@ export class StagiaireService {
 
     public findOne(id: number): Observable<StagiaireModel> {
        return this.httpClient.get<any>(
-        `${environment.fakeApi}stagiaires/${id}` // http://localhost:3000/stagiaires/2
+        `${StagiaireService.CONTROLLER_PATH}/${id}` // http://localhost:3000/stagiaires/2
        ).pipe(
         take(1), // Récupère l'objet qui vient de l'API
         map((anyStagiaire: any) => { // Transforme le any en StagiaireModel
@@ -39,44 +44,32 @@ export class StagiaireService {
     }
 
     public create(datas: any): Observable<StagiaireModel> {
-        console.log(`Values received by service : ${JSON.stringify(datas)}`);
-        /**
-         * {
-         *  lastName: "...",
-         *  firstName: "...",
-         *  gender: "...",
-         *  birthDate: "...",
-         *  phoneNumber: "...",
-         *  email: "..."
-         * }
-         */
-        // Get the next id before to send to backend
-        return this.findAll()
+        // console.log(`Values received by service : ${JSON.stringify(datas)}`);
+        console.log("Values received by service:", datas);
+       
+        // POST the stagiaire completed
+        return this.httpClient.post<StagiaireModel>(
+            StagiaireService.CONTROLLER_PATH,
+            // this.deserialize(datas)
+            datas
+        )
         .pipe(
-            take(1),
-            map((stagiaires: StagiaireModel[]) => {
-                // Compute nextId
-                let nextId = 1;
-                if (stagiaires.length) {
-                    nextId = stagiaires.sort((s1: StagiaireModel, s2: StagiaireModel) => s2.id - s1.id)[0].id + 1
-                }
-                datas.id = nextId;
-                const stagiaire: StagiaireModel = this.deserialize(datas);
-                // POST the stagiaire completed
-                this.httpClient.post<StagiaireModel>(
-                    `${environment.fakeApi}stagiaires`,
-                    datas
-                ).subscribe();
-                return stagiaire;
+            take(1), // Récupère l'objet qui vient de l'API
+            map((anyStagiaire: any) => { // Transforme le any en StagiaireModel
+                return this.deserialize(anyStagiaire);
             })
         )
+        //.subscribe();
+        //         return stagiaire;
+        //     })
+        // )
     }
 
     public update(datas: any): void {}
 
     public delete(datas: StagiaireModel): Observable<HttpResponse<any>> {
         return this.httpClient.delete<any>(
-            `${environment.fakeApi}stagiaires/${datas.id}`,
+            `${StagiaireService.CONTROLLER_PATH}/${datas.id}`,
             {
                 observe: 'response' // HttpResponse {status: 200 [40x, 50x], body: any}
             }
@@ -87,9 +80,9 @@ export class StagiaireService {
         const stagiaire: StagiaireModel = new StagiaireModel();
 
         stagiaire.id = anyStagiaire.id;
-        stagiaire.lastName = anyStagiaire.lastName;
-        stagiaire.firstName = anyStagiaire.firstName;
-        stagiaire.birthDate = anyStagiaire.birthDate;
+        stagiaire.lastname = anyStagiaire.lastname;
+        stagiaire.firstname = anyStagiaire.firstname;
+        stagiaire.birthdate = new Date(anyStagiaire.birthdate);
         stagiaire.gender = anyStagiaire.gender;
         stagiaire.email = anyStagiaire.email;
         stagiaire.phoneNumber = anyStagiaire.phoneNumber;

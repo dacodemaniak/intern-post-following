@@ -2,16 +2,18 @@
     <div class="card">
         <div class="card-header">
             <span 
-            [ngClass]="{'bubble': true, 'male': stagiaire.gender === 'M', 'female': stagiaire.gender === 'F'}"
+            [ngClass]="{'bubble': true, 
+                    'male': stagiaire.gender === 'MALE', 
+                    'female': stagiaire.gender === 'FEMALE'}"
             >
                 {{ stagiaire | initials: 'full' }}
             </span>
-            <span>{{ stagiaire.firstName }} {{ stagiaire.lastName }}</span>
+            <span>{{ stagiaire.firstname }} {{ stagiaire.lastname }}</span>
         </div>
 
         <div class="card-content">
             <ul>
-                <li>Né-e le : {{ stagiaire.birthDate | date: 'dd-MM-YYYY'}}</li>
+                <li>Né-e le : {{ stagiaire.birthdate | date: 'dd-MM-YYYY'}}</li>
                 <li>email : {{ stagiaire.email }}</li>
                 <li>Téléphone : {{ stagiaire.phoneNumber }}</li>
             </ul>

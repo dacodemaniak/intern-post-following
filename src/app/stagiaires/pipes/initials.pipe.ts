@@ -55,7 +55,8 @@ export class InitialsPipe implements PipeTransform {
   }
 
   private static simpleInitials(): string {
-    const initials: string = InitialsPipe.stagiaire.firstName.charAt(0) + InitialsPipe.stagiaire.lastName.charAt(0);
+    const initials: string = InitialsPipe.stagiaire.firstname.charAt(0) 
+          + InitialsPipe.stagiaire.lastname.charAt(0);
     if (InitialsPipe._transformParam[1] === 'uppercase') {
       return initials.toUpperCase();
     }
@@ -63,35 +64,35 @@ export class InitialsPipe implements PipeTransform {
   }
 
   private static simpleInitialsInversed(): string {
-    return InitialsPipe.stagiaire.lastName.charAt(0) + InitialsPipe.stagiaire.firstName.charAt(0);
+    return InitialsPipe.stagiaire.lastname.charAt(0) + InitialsPipe.stagiaire.firstname.charAt(0);
   }
 
   private static simpleFullInitials(): string {
     let firstNameInitials: string;
 
-    if (InitialsPipe.stagiaire.firstName.includes('-')) {
-      firstNameInitials = InitialsPipe.stagiaire.firstName
+    if (InitialsPipe.stagiaire.firstname.includes('-')) {
+      firstNameInitials = InitialsPipe.stagiaire.firstname
         .split('-') // Transforme une chaîne en un tableau en découpant la chaîne sur le caractère spécifié
         // Si la chaîne est Jean-Luc => ['Jean', 'Luc']
         .map((firstNamePart: string) => firstNamePart.charAt(0)) // Transforme un tableau en un autre tableau
         // ['J', 'L']
         .join(''); // Génère une chaîne à partir d'un tableau (inverse du split) => JL
     } else {
-      firstNameInitials = InitialsPipe.stagiaire.firstName.charAt(0);
+      firstNameInitials = InitialsPipe.stagiaire.firstname.charAt(0);
     }
-    return firstNameInitials + InitialsPipe.stagiaire.lastName.charAt(0);
+    return firstNameInitials + InitialsPipe.stagiaire.lastname.charAt(0);
   }
 
   private static fullInitialsInversed(): string {
     let firstNameInitials: string;
-    if (InitialsPipe.stagiaire.firstName.includes('-')) {
-      firstNameInitials = InitialsPipe.stagiaire.firstName
+    if (InitialsPipe.stagiaire.firstname.includes('-')) {
+      firstNameInitials = InitialsPipe.stagiaire.firstname
         .split('-')
         .map((firstNamePart: string) => firstNamePart.charAt(0))
         .join('');
     } else {
-      firstNameInitials = InitialsPipe.stagiaire.firstName.charAt(0);
+      firstNameInitials = InitialsPipe.stagiaire.firstname.charAt(0);
     }
-    return InitialsPipe.stagiaire.lastName.charAt(0) + firstNameInitials;
+    return InitialsPipe.stagiaire.lastname.charAt(0) + firstNameInitials;
   }
 }

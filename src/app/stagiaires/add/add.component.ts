@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { StagiaireModel } from 'src/app/core/models/stagiaire-model';
 import { StagiaireService } from 'src/app/core/services/stagiaire-service';
 import { DateLessThan } from 'src/app/core/validators/date-less-than';
 
@@ -21,21 +22,21 @@ export class AddComponent implements OnInit {
 
   ngOnInit(): void {
     this.addStagiaireForm = this.formBuilder.group({
-      lastName: [
+      lastname: [
         '', // Default value (here empty)
         // <input placeholder="Helper text..." value="">
         [
           Validators.required // Indique que le contrôle doit impérativement être défini avec une valeur non nulle
         ]
       ],
-      firstName: [
+      firstname: [
         '',
         Validators.required
       ],
       gender: [
         'M'
       ],
-      birthDate: [
+      birthdate: [
         '',
         [
           Validators.required,
@@ -57,9 +58,11 @@ export class AddComponent implements OnInit {
 
   public onSubmit(): void {
     console.log(`Values to send : ${JSON.stringify(this.addStagiaireForm.value)}`);
-    this.stagiaireService.create(this.addStagiaireForm.value).subscribe(() => {
-      //this.router.navigate(['/', 'stagiaires']);
-      this.addStagiaireForm.reset();
+    this.stagiaireService.create(this.addStagiaireForm.value)
+        .subscribe((stagiaire: StagiaireModel) => {
+            console.log("Values received from backend", stagiaire)
+            this.router.navigate(['/', 'stagiaires']);
+            // this.addStagiaireForm.reset();
     });
   }
 }

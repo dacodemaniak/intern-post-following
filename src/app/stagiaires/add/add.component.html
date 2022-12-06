@@ -1,31 +1,32 @@
 <form [formGroup]="addStagiaireForm" (ngSubmit)="onSubmit()">
     <!-- form fields go here -->
     <mat-form-field>
-        <input matInput placeholder="Nom du stagiaire..." type="text" formControlName="lastName">
-        <mat-error *ngIf="addStagiaireForm.controls['lastName'].errors">
+        <input matInput placeholder="Nom du stagiaire..." type="text" formControlName="lastname">
+        <mat-error *ngIf="addStagiaireForm.controls['lastname'].errors">
             Le nom du stagiaire est obligatoire !
         </mat-error>
     </mat-form-field>
 
     <mat-form-field>
-        <input matInput placeholder="Prénom du stagiaire..." type="text" formControlName="firstName">
-        <mat-error *ngIf="addStagiaireForm.controls['firstName'].errors">
+        <input matInput placeholder="Prénom du stagiaire..." type="text" formControlName="firstname">
+        <mat-error *ngIf="addStagiaireForm.controls['firstname'].errors">
             Le prénom du stagiaire est obligatoire !
         </mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="fill">
         <mat-label>Choose a date</mat-label>
-        <input matInput [matDatepicker]="picker" formControlName="birthDate">
+        <input matInput [matDatepicker]="picker" formControlName="birthdate">
         <mat-hint>DD/MM/YYYY</mat-hint>
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
 
-        <mat-error *ngIf="addStagiaireForm.controls['birthDate'].errors && addStagiaireForm.controls['birthDate'].touched">
-            <span *ngIf="addStagiaireForm.controls['birthDate'].hasError('required')">
+        <mat-error *ngIf="addStagiaireForm.controls['birthdate'].errors 
+                    && addStagiaireForm.controls['birthdate'].touched">
+            <span *ngIf="addStagiaireForm.controls['birthdate'].hasError('required')">
                 La date de naissance est obligatoire.
             </span> 
-            <span *ngIf="addStagiaireForm.controls['birthDate'].hasError('dateLessThan')">
+            <span *ngIf="addStagiaireForm.controls['birthdate'].hasError('dateLessThan')">
                 Le stagiaire n'a pas 18 ans...
             </span>         
         </mat-error>
@@ -51,5 +52,5 @@
         Add
     </button>
 
-    {{ addStagiaireForm.controls['birthDate'].errors | json }}
+    {{ addStagiaireForm.controls['birthdate'].errors | json }}
 </form>
