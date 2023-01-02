@@ -3,7 +3,7 @@ export class StagiaireModel {
     private _id: number = 0;
     private _lastname: string = '';
     private _firstname: string = '';
-    private _gender: string = '';
+    private _gender: string = ''; 
     private _birthdate?: Date | undefined = undefined;
     private _phoneNumber: string = '';
     private _email: string = ''; 

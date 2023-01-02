@@ -51,7 +51,7 @@ describe('StagiaireService', () => {
     const httpTestingController = TestBed.inject(HttpTestingController)
     service.findOne(1)
       .subscribe((stagiaire: StagiaireModel) => {
-        expect(stagiaire.lastName).toBe('Aubert');
+        expect(stagiaire.lastname).toBe('Aubert');
       });
     
     const request = httpTestingController.expectOne(
