@@ -10,8 +10,8 @@ import { map, switchMap, take } from 'rxjs/operators';
 })
 export class StagiaireService {
 
-    private static readonly CONTROLLER_PATH: string = `${environment.api}trainees`;    
-    // private static readonly CONTROLLER_PATH: string = `${environment.fakeApi}stagiaires`;    
+    private static readonly CONTROLLER_PATH: string = `${environment.api}trainees`;
+    // private static readonly CONTROLLER_PATH: string = `${environment.fakeApi}stagiaires`;
 
     public constructor(
         private httpClient: HttpClient
@@ -19,6 +19,7 @@ export class StagiaireService {
 
     // CRUD methods : Create Read Update Delete
     public findAll(): Observable<StagiaireModel[]> {
+      // GET http://localhost:8080/api/trainees
         return this.httpClient.get<any[]>(
             StagiaireService.CONTROLLER_PATH
         )
@@ -46,7 +47,7 @@ export class StagiaireService {
     public create(datas: any): Observable<StagiaireModel> {
         // console.log(`Values received by service : ${JSON.stringify(datas)}`);
         console.log("Values received by service:", datas);
-       
+
         // POST the stagiaire completed
         return this.httpClient.post<StagiaireModel>(
             StagiaireService.CONTROLLER_PATH,
