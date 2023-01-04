@@ -3,11 +3,13 @@ import { CommonModule } from '@angular/common';
 
 import { PoesRoutingModule } from './poes-routing.module';
 import { ListComponent } from './components/list/list.component';
+import { ManageComponent } from './components/manage/manage.component';
 
 
 @NgModule({
   declarations: [
-    ListComponent
+    ListComponent,
+    ManageComponent
   ],
   imports: [
     CommonModule,
