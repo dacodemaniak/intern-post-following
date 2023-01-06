@@ -1,3 +1,5 @@
+import { Expose, Type } from 'class-transformer';
+import 'reflect-metadata';
 export class Poe {
   private _id?: number;
   private _title: string = '';
@@ -12,7 +14,7 @@ export class Poe {
     return this._id
   }
 
-
+  @Expose()
   set id(val: number | undefined) {
     this._id = val
   }
@@ -21,6 +23,7 @@ export class Poe {
     return this._title
   }
 
+  @Expose()
   set title(val: string) {
     this._title = val
   }
@@ -29,6 +32,8 @@ export class Poe {
     return this._beginDate
   }
 
+  @Expose()
+  @Type(() => Date)
   set beginDate(val: Date) {
     this._beginDate = val
   }
@@ -37,6 +42,8 @@ export class Poe {
     return this._endDate
   }
 
+  @Expose()
+  @Type(() => Date)
   set endDate(val: Date) {
     this._endDate = val
   }
@@ -45,6 +52,7 @@ export class Poe {
     return this._poeType
   }
 
+  @Expose()
   set poeType(val: any) {
     this._poeType = val
   }
