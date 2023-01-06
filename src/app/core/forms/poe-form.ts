@@ -19,6 +19,7 @@ export class PoeForm extends Forms {
   }
 
   public build(): Forms {
+    this._form = new FormGroup({});
     this.controlsMap.forEach((controlType: ControlType, name: string) => {
       controlType.control.setValue(this._model[name]);
       controlType.control.setValidators(controlType.validators);
