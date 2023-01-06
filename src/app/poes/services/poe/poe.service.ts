@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { take, map } from 'rxjs/operators';
 import { ICrud } from 'src/app/core/interfaces/i-crud';
 import { Poe } from 'src/app/core/models/poe';
+import { ApiPoeType } from 'src/app/core/types/api-poe-type';
 import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
@@ -22,8 +23,8 @@ export class PoeService implements ICrud<Poe> {
     )
     .pipe(
       take(1),
-      map((fromApiPoes: any) => {
-        return fromApiPoes.map((fromApiPoe: any) => {
+      map((fromApiPoes: ApiPoeType[]) => {
+        return fromApiPoes.map((fromApiPoe: ApiPoeType) => {
           const poe: Poe = new Poe();
           poe.id = fromApiPoe.id;
           poe.title = fromApiPoe.title;

@@ -7,6 +7,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [],
@@ -25,6 +27,8 @@ export class UiModule {
     MatFormFieldModule,
     MatInputModule,
     MatRadioModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    MatTableModule,
+    MatSortModule
   ];
 }

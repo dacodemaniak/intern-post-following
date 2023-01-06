@@ -1,1 +1,41 @@
-<p>list works!</p>
+<ng-container *ngIf="poes else loading">
+  <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> # </th>
+      <td mat-cell *matCellDef="let element"> {{ element.id }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef> Title </th>
+      <td mat-cell *matCellDef="let element"> {{ element.title }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="beginDate">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Begin at </th>
+      <td mat-cell *matCellDef="let element"> {{ element.beginDate | date: 'dd-MM-YYYY' }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="endDate">
+      <th mat-header-cell *matHeaderCellDef> End at </th>
+      <td mat-cell *matCellDef="let element"> {{ element.endDate | date: 'dd-MM-YYYY'  }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="poeType">
+      <th mat-header-cell *matHeaderCellDef> Type </th>
+      <td mat-cell *matCellDef="let element"> {{ element.poeType }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef> &nbsp; </th>
+      <td mat-cell *matCellDef="let element"> Menu </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</ng-container>
+
+<ng-template #loading>
+  POE's list is loading...
+</ng-template>
