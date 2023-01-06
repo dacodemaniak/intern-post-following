@@ -1,11 +1,12 @@
 import { Expose, Type } from 'class-transformer';
 import 'reflect-metadata';
+import { PoeTypes } from '../enums/poe-types';
 export class Poe {
   private _id?: number;
   private _title: string = '';
   private _beginDate!: Date;
   private _endDate!: Date;
-  private _poeType: any; // @todo use an enum instead of any
+  private _poeType: PoeTypes = PoeTypes.POEI; // @todo use an enum instead of any
 
   /**
    * @usage const id = myObj.id
