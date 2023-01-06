@@ -9,6 +9,7 @@ import {MatRadioModule} from '@angular/material/radio';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [],
@@ -29,6 +30,7 @@ export class UiModule {
     MatRadioModule,
     MatDatepickerModule,
     MatTableModule,
-    MatSortModule
+    MatSortModule,
+    MatSelectModule
   ];
 }
