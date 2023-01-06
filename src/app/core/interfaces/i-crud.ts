@@ -1,4 +1,6 @@
+import { HttpResponse } from "@angular/common/http";
 import { Observable } from "rxjs";
+import { Poe } from "../models/poe";
 
 export interface ICrud<T> {
   /**
@@ -14,14 +16,14 @@ export interface ICrud<T> {
    * @param id id of the T object i want to Observe
    * @returns Observable of a T object
    */
-  findOne(id: number): Observable<T>;
+  findOne(id: number): Observable<Poe>;
 
   /**
    * create(datas: any) Insert a new Object in the database
    * @param datas Datas representing a T object
    * @returns T object after creation
    */
-  create(datas: any): Observable<T>;
+  create(datas: any): Observable<HttpResponse<any>>;
 
   /**
    * update(datas: any) Update an Object in the database
