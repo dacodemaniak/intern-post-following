@@ -1,1 +1,39 @@
-<p>manage works!</p>
+<ng-container *ngIf="form" (ngSubmit)="onSubmit()">
+  <form [formGroup]="form">
+    <div class="form-field">
+      <mat-form-field>
+        <input matInput formControlName="title" placeholder="POE's title...">
+      </mat-form-field>
+    </div>
+
+    <div class="form-field">
+      <mat-form-field appearance="fill">
+        <mat-label>Begin and End dates</mat-label>
+        <mat-date-range-input [rangePicker]="picker">
+          <input matStartDate formControlName="beginDate" placeholder="Start date">
+          <input matEndDate formControlName="endDate" placeholder="End date">
+        </mat-date-range-input>
+        <mat-hint>JJ/MM/AAAA – JJ/MM/AAAA</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-date-range-picker #picker></mat-date-range-picker>
+      </mat-form-field>
+    </div>
+
+    <div class="form-field">
+      <mat-form-field appearance="fill">
+        <mat-label>POE Type</mat-label>
+        <mat-select formControlName="poeType">
+          <mat-option *ngFor="let poeType of poeTypes" [value]="poeType">
+            {{ poeType }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="form-field">
+      <button mat-raised-button color="primary" [disabled]="form.invalid">
+        Save
+      </button>
+    </div>
+  </form>
+</ng-container>

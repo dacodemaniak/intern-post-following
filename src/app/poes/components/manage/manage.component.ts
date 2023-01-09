@@ -6,6 +6,8 @@ import { HttpResponse } from '@angular/common/http';
 import { PoeForm } from 'src/app/core/forms/poe-form';
 import { FormGroup } from '@angular/forms';
 import { Poe } from 'src/app/core/models/poe';
+import { ToArray } from 'src/app/core/enums/helpers/to-array';
+import { PoeTypes } from 'src/app/core/enums/poe-types';
 @Component({
   selector: 'app-manage',
   templateUrl: './manage.component.html',
@@ -15,6 +17,7 @@ export class ManageComponent implements OnInit {
 
   isAddMode: boolean = true;
   form!: FormGroup;
+  poeTypes: string[] = [];
 
   constructor(
     private _route: ActivatedRoute,
@@ -22,7 +25,9 @@ export class ManageComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+
     let formBuilder: PoeForm;
+    this.poeTypes = ToArray.toArray(PoeTypes);
 
     this._route.paramMap
       .subscribe((paramMap: ParamMap) => {
@@ -34,8 +39,8 @@ export class ManageComponent implements OnInit {
               take(1)
             )
             .subscribe({
-                next: (httpResponse: HttpResponse<any>) => {
-                  formBuilder = new PoeForm(httpResponse.body);
+                next: (response: Poe) => {
+                  formBuilder = new PoeForm(response);
                   this.form = formBuilder.build().form;
                 },
                 error: (error: any) => {
@@ -51,4 +56,5 @@ export class ManageComponent implements OnInit {
       })
   }
 
+  onSubmit(): void {}
 }
