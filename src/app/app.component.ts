@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { IntlService } from './intl/services/intl.service';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +9,12 @@ import { Component } from '@angular/core';
 export class AppComponent {
   public title = 'frontend';
 
-  public constructor() {}
+  public constructor(
+    public intlService: IntlService
+  ) {}
+
+  switchLanguage(language: string): void {
+    this.intlService.language = language;
+  }
 
 }

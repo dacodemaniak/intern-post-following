@@ -1,3 +1,6 @@
 {
-  "appTitle": "Suivi des stagiaires"
+  "appTitle": "Suivi des stagiaires",
+  "links": {
+    "interns": "Liste des stagiaires"
+  }
 }

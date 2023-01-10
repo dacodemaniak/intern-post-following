@@ -21,6 +21,7 @@ export class IntlService {
 
   set language(language: string) {
     this._language = language;
+    this._switchLanguage();
   }
 
   init(translateService: TranslateService, injector: Injector): Promise<void> {

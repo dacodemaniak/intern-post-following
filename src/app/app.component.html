@@ -1,8 +1,10 @@
 <h1>{{ 'appTitle' | translate }}</h1>
+<button type="button" (click)="switchLanguage('fr')" [disabled]="intlService.language === 'fr'">Fr</button>
+<button type="button" (click)="switchLanguage('en')"[disabled]="intlService.language === 'en'">En</button>
 <nav>
   <ul>
     <li>
-      <a [routerLink]="'/stagiaires'">Liste des stagiaires</a>
+      <a [routerLink]="'/stagiaires'">{{ 'links.interns' | translate }}</a>
     </li>
   </ul>
 </nav>
