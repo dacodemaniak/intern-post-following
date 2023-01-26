@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { StagiaireModel } from 'src/app/core/models/stagiaire-model';
 import { StagiaireService } from 'src/app/core/services/stagiaire-service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { UserService } from 'src/app/core/services/user.service';
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
@@ -17,14 +18,21 @@ export class ListComponent implements OnInit {
   constructor(
     private router: Router, // DI => Dependency Injection
     private stagiaireService: StagiaireService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private _userService: UserService
   ) {}
 
   ngOnInit(): void {
-    this.stagiaireService.findAll()
-      .subscribe((stagiaires: StagiaireModel[]) => {
-        this.stagiaires = stagiaires;
-      });
+    this._userService.hasUser$.subscribe(ok => {
+      if (!ok) {
+        this.stagiaires = []
+        return
+      } 
+      this.stagiaireService.findAll()
+        .subscribe((stagiaires: StagiaireModel[]) => {
+          this.stagiaires = stagiaires;
+        });
+    });
   }
 
   public changeGender(): void {

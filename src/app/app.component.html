@@ -1,4 +1,6 @@
 <h1>{{ 'appTitle' | translate }}</h1>
+<app-signin *ngIf="!hasUser"></app-signin>
+<app-signout *ngIf="hasUser"></app-signout>
 <button type="button" (click)="switchLanguage('fr')" [disabled]="intlService.language === 'fr'">Fr</button>
 <button type="button" (click)="switchLanguage('en')"[disabled]="intlService.language === 'en'">En</button>
 <nav>
