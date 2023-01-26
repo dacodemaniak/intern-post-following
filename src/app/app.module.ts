@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { StagiairesModule } from './stagiaires/stagiaires.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
+import { authInterceptor } from './core/services/auth-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,9 @@ import { SharedModule } from './shared/shared.module';
     BrowserAnimationsModule,
     SharedModule
   ],
-  providers: [],
+  providers: [
+    authInterceptor
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
