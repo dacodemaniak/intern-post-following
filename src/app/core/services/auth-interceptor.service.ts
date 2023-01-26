@@ -16,10 +16,10 @@ export class AuthInterceptorService implements HttpInterceptor{
     // TODO2: retrieve current User if not logged
     const user = <UserModel> {
       username: "user",
-      password: "password"
+      password: btoa("user:password")
     };
     const newReq = req.clone({
-      headers: new HttpHeaders('Authorization: Basic dXNlcjpwYXNzd29yZA==')
+      headers: new HttpHeaders(`Authorization: Basic ${user.password}`)
     });
     console.log("Request with authorization:", newReq);
     return next.handle(newReq);
