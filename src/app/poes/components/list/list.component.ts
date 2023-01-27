@@ -34,11 +34,21 @@ export class ListComponent implements OnInit {
       .subscribe((poes: Poe[]) => {
         this.poes = poes;
         this.dataSource = new MatTableDataSource(poes);
+        // filter: default predicate search on all columns (case insensitive)
+        this.dataSource.filterPredicate = (data: Poe, filter: string) => {
+          return data.title.toLowerCase().indexOf(filter) >= 0;
+         };
       })
   }
 
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
+  }
+
+  applyFilter(event: any){
+    let filterValue = event.target.value.trim(); 
+    filterValue = filterValue.toLowerCase(); 
+    this.dataSource.filter = filterValue;
   }
 
 }

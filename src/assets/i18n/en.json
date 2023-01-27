@@ -1,6 +1,7 @@
 {
   "appTitle": "Interns survey",
   "links": {
-    "interns": "Interns list"
+    "interns": "Interns list",
+    "poes": "Poes list"
   }
 }
